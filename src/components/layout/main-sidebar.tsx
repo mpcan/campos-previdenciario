@@ -1,78 +1,119 @@
+"use client"
+
 import { Sidebar, SidebarContent, SidebarHeader, SidebarItem } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
   Users, 
   FileText, 
+  BarChart2, 
+  MessageSquare, 
   Calendar, 
-  FileCheck, 
-  BarChart3, 
   Settings,
-  MessageSquare,
-  Home
+  Briefcase,
+  Scale,
+  Search,
+  Bell,
+  Megaphone
 } from "lucide-react";
 
 export function MainSidebar() {
   const pathname = usePathname();
-
-  const isActive = (path: string) => {
-    return pathname === path || pathname.startsWith(`${path}/`);
-  };
-
+  
   return (
-    <Sidebar defaultOpen={true} className="border-r">
-      <SidebarHeader className="flex items-center justify-center">
-        <h1 className="text-xl font-bold">PrevGestão</h1>
+    <Sidebar>
+      <SidebarHeader>
+        <div className="flex items-center space-x-2 px-6 py-4">
+          <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center">
+            <span className="text-white font-bold">P</span>
+          </div>
+          <div>
+            <h2 className="text-lg font-bold text-gray-900">PowerPrev</h2>
+            <p className="text-xs text-gray-500">Gestão Previdenciária</p>
+          </div>
+        </div>
       </SidebarHeader>
-      <SidebarContent className="space-y-1">
-        <Link href="/dashboard">
-          <SidebarItem active={isActive("/dashboard")}>
-            <Home className="mr-2 h-4 w-4" />
-            Dashboard
-          </SidebarItem>
-        </Link>
-        <Link href="/clientes">
-          <SidebarItem active={isActive("/clientes")}>
-            <Users className="mr-2 h-4 w-4" />
-            Clientes
-          </SidebarItem>
-        </Link>
-        <Link href="/processos">
-          <SidebarItem active={isActive("/processos")}>
-            <FileText className="mr-2 h-4 w-4" />
-            Processos
-          </SidebarItem>
-        </Link>
-        <Link href="/atendimentos">
-          <SidebarItem active={isActive("/atendimentos")}>
-            <MessageSquare className="mr-2 h-4 w-4" />
-            Atendimentos
-          </SidebarItem>
-        </Link>
-        <Link href="/pericias">
-          <SidebarItem active={isActive("/pericias")}>
-            <Calendar className="mr-2 h-4 w-4" />
-            Perícias
-          </SidebarItem>
-        </Link>
-        <Link href="/documentos">
-          <SidebarItem active={isActive("/documentos")}>
-            <FileCheck className="mr-2 h-4 w-4" />
-            Documentos
-          </SidebarItem>
-        </Link>
-        <Link href="/relatorios">
-          <SidebarItem active={isActive("/relatorios")}>
-            <BarChart3 className="mr-2 h-4 w-4" />
-            Relatórios
-          </SidebarItem>
-        </Link>
-        <Link href="/configuracoes">
-          <SidebarItem active={isActive("/configuracoes")}>
-            <Settings className="mr-2 h-4 w-4" />
-            Configurações
-          </SidebarItem>
-        </Link>
+      <SidebarContent>
+        <SidebarItem 
+          icon={<Users className="h-5 w-5" />}
+          href="/clientes"
+          active={pathname?.startsWith('/clientes')}
+          as={Link}
+        >
+          Clientes
+        </SidebarItem>
+        <SidebarItem 
+          icon={<Briefcase className="h-5 w-5" />}
+          href="/processos"
+          active={pathname?.startsWith('/processos')}
+          as={Link}
+        >
+          Processos
+        </SidebarItem>
+        <SidebarItem 
+          icon={<Scale className="h-5 w-5" />}
+          href="/jurisprudencia"
+          active={pathname?.startsWith('/jurisprudencia')}
+          as={Link}
+        >
+          Jurisprudência
+        </SidebarItem>
+        <SidebarItem 
+          icon={<MessageSquare className="h-5 w-5" />}
+          href="/atendimentos"
+          active={pathname?.startsWith('/atendimentos')}
+          as={Link}
+        >
+          Atendimentos
+        </SidebarItem>
+        <SidebarItem 
+          icon={<Megaphone className="h-5 w-5" />}
+          href="/campanhas"
+          active={pathname?.startsWith('/campanhas')}
+          as={Link}
+        >
+          Campanhas
+        </SidebarItem>
+        <SidebarItem 
+          icon={<Calendar className="h-5 w-5" />}
+          href="/agenda"
+          active={pathname?.startsWith('/agenda')}
+          as={Link}
+        >
+          Agenda
+        </SidebarItem>
+        <SidebarItem 
+          icon={<FileText className="h-5 w-5" />}
+          href="/documentos"
+          active={pathname?.startsWith('/documentos')}
+          as={Link}
+        >
+          Documentos
+        </SidebarItem>
+        <SidebarItem 
+          icon={<BarChart2 className="h-5 w-5" />}
+          href="/relatorios"
+          active={pathname?.startsWith('/relatorios')}
+          as={Link}
+        >
+          Relatórios
+        </SidebarItem>
+        <SidebarItem 
+          icon={<Bell className="h-5 w-5" />}
+          href="/notificacoes"
+          active={pathname?.startsWith('/notificacoes')}
+          as={Link}
+        >
+          Notificações
+        </SidebarItem>
+        <SidebarItem 
+          icon={<Settings className="h-5 w-5" />}
+          href="/configuracoes"
+          active={pathname?.startsWith('/configuracoes')}
+          as={Link}
+        >
+          Configurações
+        </SidebarItem>
       </SidebarContent>
     </Sidebar>
   );
